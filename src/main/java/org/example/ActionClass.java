@@ -31,6 +31,7 @@ public class ActionClass {
             // Conversion process
             try {
                 convertImgToPdf(jFileChooser.getSelectedFile());
+                JOptionPane.showMessageDialog(null, "PDF saved in "+System.getProperty("user.home") + " !", "Success", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException | DocumentException e) {
                 throw new RuntimeException(e);
             }
@@ -43,19 +44,25 @@ public class ActionClass {
         PdfWriter pdfWriter = PdfWriter.getInstance(document, outputStream);
 
         pdfWriter.open();
-        document.open();
 
         Image imageToBeConverted = Image.getInstance(file.getPath());
         System.out.println(imageToBeConverted.getWidth());
         System.out.println(imageToBeConverted.getHeight());
 
+        imageToBeConverted.scaleToFit(PageSize.A4);
         // Make the Document horizontal if the Width of the IMG is greater than the height
         // Rotating doesnt work for some reason?
         // try another layout format than A4 maybe
         if (imageToBeConverted.getWidth() > imageToBeConverted.getHeight()) {
             document.setPageSize(PageSize.A4.rotate());
+            imageToBeConverted.scaleToFit(PageSize.A4.rotate());
+            document.setMargins(0, 0, 5, 0);
+
         }
-        document.add(Image.getInstance(file.getPath()));
+
+        document.setMargins(0,0,5,0);
+        document.open();
+        document.add(imageToBeConverted);
 
         document.close();
         pdfWriter.close();
