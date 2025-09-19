@@ -46,7 +46,7 @@ public class ActionClass {
         pdfWriter.open();
 
         Image imageToBeConverted = Image.getInstance(file.getPath());
-        System.out.println("Width of IMG" + imageToBeConverted.getWidth() + ", Height:  " + imageToBeConverted.getHeight());
+        System.out.println("Width of IMG: " + imageToBeConverted.getWidth() + ", Height:  " + imageToBeConverted.getHeight());
 
         // Scale to Image to the Pagesize
         imageToBeConverted.scaleToFit(PageSize.A4);
