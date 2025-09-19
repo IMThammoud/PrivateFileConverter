@@ -12,12 +12,13 @@ public class Main {
         ActionClass actionClass = new ActionClass(){};
 
         // #1 Set first Window components specs
+        mainFrame.setTitle("Private-FileConverter");
         mainFrame.setSize(800, 600 );
         mainFrame.setLayout(null);
         mainFrame.setVisible(true);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        imgToPdfButton.setBounds(100,0 ,200,80);
-        compressFileButton.setBounds(100, 90, 200, 80);
+        imgToPdfButton.setBounds(100,20 ,200,80);
+        compressFileButton.setBounds(100, 110, 200, 80);
 
         // Use Lambda to trigger an Action based on the click event of the button
         imgToPdfButton.addActionListener(e -> actionClass.imgToPDFButtonClicked());

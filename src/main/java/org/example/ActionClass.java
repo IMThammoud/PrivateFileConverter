@@ -30,6 +30,7 @@ public class ActionClass {
 
             // Conversion process
             try {
+
                 convertImgToPdf(jFileChooser.getSelectedFile());
                 JOptionPane.showMessageDialog(null, "PDF saved in "+System.getProperty("user.home") + " !", "Success", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException | DocumentException e) {
