@@ -33,6 +33,7 @@ public class ActionClass {
                 convertImgToPdf(jFileChooser.getSelectedFile());
                 JOptionPane.showMessageDialog(null, "PDF saved in "+System.getProperty("user.home") + " !", "Success", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException | DocumentException e) {
+                JOptionPane.showMessageDialog(null, "Something went wrong. Please select the right File Format for conversion. Aborting.", "Problem", JOptionPane.ERROR_MESSAGE);
                 throw new RuntimeException(e);
             }
         }
