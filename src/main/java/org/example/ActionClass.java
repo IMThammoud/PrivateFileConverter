@@ -46,20 +46,18 @@ public class ActionClass {
         pdfWriter.open();
 
         Image imageToBeConverted = Image.getInstance(file.getPath());
-        System.out.println(imageToBeConverted.getWidth());
-        System.out.println(imageToBeConverted.getHeight());
+        System.out.println("Width of IMG" + imageToBeConverted.getWidth() + ", Height:  " + imageToBeConverted.getHeight());
 
+        // Scale to Image to the Pagesize
         imageToBeConverted.scaleToFit(PageSize.A4);
-        // Make the Document horizontal if the Width of the IMG is greater than the height
-        // Rotating doesnt work for some reason?
-        // try another layout format than A4 maybe
+
+        // Make the Document landscape if the Width of the IMG is greater than the height
         if (imageToBeConverted.getWidth() > imageToBeConverted.getHeight()) {
             document.setPageSize(PageSize.A4.rotate());
+            // Scale to Image to the Pagesize
             imageToBeConverted.scaleToFit(PageSize.A4.rotate());
             document.setMargins(0, 0, 5, 0);
-
         }
-
         document.setMargins(0,0,5,0);
         document.open();
         document.add(imageToBeConverted);
