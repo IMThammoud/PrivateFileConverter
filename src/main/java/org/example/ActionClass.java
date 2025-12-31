@@ -8,9 +8,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.UUID;
 
 public class ActionClass {
@@ -30,7 +28,6 @@ public class ActionClass {
 
             // Conversion process
             try {
-
                 convertImgToPdf(jFileChooser.getSelectedFile());
                 JOptionPane.showMessageDialog(null, "PDF saved in "+System.getProperty("user.home") + " !", "Success", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException | DocumentException e) {
@@ -67,4 +64,5 @@ public class ActionClass {
         document.close();
         pdfWriter.close();
     }
+
 }

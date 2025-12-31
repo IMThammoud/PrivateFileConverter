@@ -6,8 +6,8 @@ public class Main {
     public static void main(String[] args) {
         // #1 Init First Window Components (Frames, Buttons, etc.)
         JFrame mainFrame = new JFrame();
-        JButton imgToPdfButton = new JButton("Convert Image to PDF");
-        JButton compressFileButton = new JButton("Compress File");
+        JButton imgToPdfButton = new JButton("Img to PDF");
+        JButton appleImageConvertButton = new JButton("Apples HEIC to PNG");
 
         ActionClass actionClass = new ActionClass(){};
 
@@ -18,13 +18,13 @@ public class Main {
         mainFrame.setVisible(true);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         imgToPdfButton.setBounds(100,20 ,200,80);
-        compressFileButton.setBounds(100, 110, 200, 80);
+        appleImageConvertButton.setBounds(100, 110, 200, 80);
 
         // Use Lambda to trigger an Action based on the click event of the button
         imgToPdfButton.addActionListener(e -> actionClass.imgToPDFButtonClicked());
 
         // #1 add components to frame
         mainFrame.add(imgToPdfButton);
-        mainFrame.add(compressFileButton);
+        mainFrame.add(appleImageConvertButton);
     }
 }
