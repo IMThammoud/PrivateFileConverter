@@ -8,9 +8,9 @@ Still in development.
 
 ### Features:
 - Converting Image Files to PDFs using iText Library
+- Apples HEIC format Conversion to other IMG Formats (JPG)
 - Automatically rotates to landscape or portrait depending on width & length of img
 
 ### Coming Soon:
-- Apples HEIC format Conversion to other IMG Formats (PNG,JPG)
 - Audio & Video Conversion
 - Conversion of other Document Types
