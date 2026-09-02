@@ -5,9 +5,19 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
+import openize.heic.decoder.HeicImage;
+import openize.heic.decoder.PixelFormat;
+import openize.io.IOFileStream;
+import openize.io.IOMode;
+
+import javax.imageio.ImageIO;
+import javax.imageio.stream.FileImageInputStream;
+import javax.imageio.stream.FileImageOutputStream;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -134,6 +144,46 @@ public class ActionClass {
             document.close();
 
         }
+    }
+
+    private void convertHeicToJpeg(File file) {
+
+        try (IOFileStream fs = new IOFileStream(file, IOMode.READ))
+        {
+            HeicImage image = HeicImage.load(fs);
+
+            int width = (int)image.getWidth();
+            int height = (int)image.getHeight();
+
+            BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            int[] pixels = image.getInt32Array(PixelFormat.Argb32);
+            // Zusammensetzung des neuen Images
+            bufferedImage.setRGB(0, 0, width, height, pixels, 0, width);
+
+            // Slash is needed between systemproperty and filename as it would mess up the path otherwise
+            ImageIO.write(bufferedImage, "JPG", new File(System.getProperty("user.home") + "/" + file.getName()+ ".jpg"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void heicToJpegButtonClicked(){
+
+        JFileChooser jFileChooser = new JFileChooser();
+        FileNameExtensionFilter fileNameExtensionFilter = new FileNameExtensionFilter("Heic", "heic");
+        jFileChooser.setFileFilter(fileNameExtensionFilter);
+        int val = jFileChooser.showOpenDialog(null);
+        if (val == JFileChooser.APPROVE_OPTION) {
+            System.out.println("File chosen: " + jFileChooser.getSelectedFile().getName());
+            System.out.println("File Path: " + jFileChooser.getSelectedFile().getPath());
+            System.out.println("HomeDir of user: " + System.getProperty("user.home"));
+
+            // Conversion process
+            convertHeicToJpeg(jFileChooser.getSelectedFile());
+            JOptionPane.showMessageDialog(null, "Jpeg saved to " + System.getProperty("user.home") + " !", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }
+
     }
 }
 

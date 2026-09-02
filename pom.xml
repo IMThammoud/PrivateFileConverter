@@ -14,6 +14,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>aspose-maven-repository</id>
+            <url>https://repository.aspose.com/repo/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.itextpdf</groupId>
@@ -25,6 +32,13 @@
             <artifactId>xmlworker</artifactId>
             <version>5.5.10</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.aspose</groupId>
+            <artifactId>openize-heic</artifactId>
+            <version>26.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>
