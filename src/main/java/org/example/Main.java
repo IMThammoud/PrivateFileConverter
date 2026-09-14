@@ -14,7 +14,7 @@ public class Main {
 
         // #1 Set first Window components specs
         mainFrame.setTitle("Private-FileConverter");
-        mainFrame.setSize(800, 600 );
+        mainFrame.setSize(600, 500 );
         mainFrame.setLayout(null);
         mainFrame.setVisible(true);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
