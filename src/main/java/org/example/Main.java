@@ -9,6 +9,7 @@ public class Main {
         JButton imgToPdfButton = new JButton("Image to PDF");
         JButton imagesToPdfs = new JButton("Images to PDFS");
         JButton heicToJpegButton = new JButton("Heic to Jpeg");
+        JButton multipleHeicToJpegButton = new JButton("Multiple Heic to JPEG");
 
         ActionClass actionClass = new ActionClass(){};
 
@@ -21,15 +22,18 @@ public class Main {
         imgToPdfButton.setBounds(100,20 ,200,80);
         imagesToPdfs.setBounds(100, 110, 200, 80);
         heicToJpegButton.setBounds(100,210,200,80);
+        multipleHeicToJpegButton.setBounds(100, 310, 200, 80);
 
         // Use Lambda to trigger an Action based on the click event of the button
         imgToPdfButton.addActionListener(e -> actionClass.imgToPDFButtonClicked());
         imagesToPdfs.addActionListener(e -> actionClass.imgsToPdfsSeperateClicked());
-        heicToJpegButton.addActionListener(e -> {actionClass.heicToJpegButtonClicked();});
+        heicToJpegButton.addActionListener(e -> actionClass.heicToJpegButtonClicked());
+        multipleHeicToJpegButton.addActionListener(e -> actionClass.multipleHeicToJpegButtonClicked());
 
         // #1 add components to frame
         mainFrame.add(imgToPdfButton);
         mainFrame.add(imagesToPdfs);
         mainFrame.add(heicToJpegButton);
+        mainFrame.add(multipleHeicToJpegButton);
     }
 }

@@ -148,6 +148,8 @@ public class ActionClass {
 
     private void convertHeicToJpeg(File file) {
 
+        // Resource fs is closed automatically after the try block is done
+        // spares closing the filestream resource at the end
         try (IOFileStream fs = new IOFileStream(file, IOMode.READ))
         {
             HeicImage image = HeicImage.load(fs);
@@ -182,6 +184,28 @@ public class ActionClass {
             // Conversion process
             convertHeicToJpeg(jFileChooser.getSelectedFile());
             JOptionPane.showMessageDialog(null, "Jpeg saved to " + System.getProperty("user.home") + " !", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }
+
+    public void multipleHeicToJpegButtonClicked() {
+
+        JFileChooser jFileChooser = new JFileChooser();
+        FileNameExtensionFilter fileNameExtensionFilter = new FileNameExtensionFilter("Heic", "heic");
+        jFileChooser.setFileFilter(fileNameExtensionFilter);
+        jFileChooser.setMultiSelectionEnabled(true);
+
+        int val = jFileChooser.showOpenDialog(null);
+        if (val == JFileChooser.APPROVE_OPTION) {
+            System.out.println("File chosen: " + jFileChooser.getSelectedFile().getName());
+            System.out.println("File Path: " + jFileChooser.getSelectedFile().getPath());
+            System.out.println("HomeDir of user: " + System.getProperty("user.home"));
+
+            // Conversion process
+            for (File file : jFileChooser.getSelectedFiles()) {
+                convertHeicToJpeg(file);
+            }
+            JOptionPane.showMessageDialog(null, "Jpeg Images saved to " + System.getProperty("user.home") + " !", "Success", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }
