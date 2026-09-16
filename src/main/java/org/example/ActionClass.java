@@ -49,7 +49,7 @@ public class ActionClass {
         }
     }
 
-    private void convertImgToPdf(File file) throws IOException, DocumentException {
+    void convertImgToPdf(File file) throws IOException, DocumentException {
         FileOutputStream outputStream = new FileOutputStream(System.getProperty("user.home") + "/img_to_PDF" + UUID.randomUUID() + ".pdf");
         Document document = new Document();
         PdfWriter pdfWriter = PdfWriter.getInstance(document, outputStream);
@@ -103,7 +103,7 @@ public class ActionClass {
     }
 
     // Rewrite of convertmethod for multiple file selection
-    private void convertImgsToPdfSeperate(File[] files) throws IOException, DocumentException {
+    void convertImgsToPdfSeperate(File[] files) throws IOException, DocumentException {
 
 
         ArrayList<Image> imagesToBeConverted = new ArrayList<>();
@@ -146,7 +146,7 @@ public class ActionClass {
         }
     }
 
-    private void convertHeicToJpeg(File file) {
+    void convertHeicToJpeg(File file) {
 
         // Resource fs is closed automatically after the try block is done
         // spares closing the filestream resource at the end
